@@ -45,7 +45,10 @@ public class Recipe {
         notes.setRecipe(this);
     }
 
-    public void addIngredient(Ingredient ingredient) {
+    public Recipe addIngredient(Ingredient ingredient) {
+        ingredient.setRecipe(this);
         ingredients.add(ingredient);
+
+        return this;
     }
 }

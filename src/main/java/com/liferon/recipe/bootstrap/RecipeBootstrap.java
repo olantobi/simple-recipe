@@ -4,25 +4,29 @@ import com.liferon.recipe.model.*;
 import com.liferon.recipe.repositories.CategoryRepository;
 import com.liferon.recipe.repositories.RecipeRepository;
 import com.liferon.recipe.repositories.UnitOfMeasureRepository;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
+import javax.transaction.Transactional;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@Slf4j
 @Component
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEvent> {
 
-    private CategoryRepository categoryRepository;
-    private UnitOfMeasureRepository unitOfMeasureRepository;
-    private RecipeRepository recipeRepository;
+    private final CategoryRepository categoryRepository;
+    private final UnitOfMeasureRepository unitOfMeasureRepository;
+    private final RecipeRepository recipeRepository;
 
     @Override
+    @Transactional
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
         recipeRepository.saveAll(getRecipes());
     }

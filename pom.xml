@@ -74,7 +74,6 @@
                         <additionalClasspathElement>${basedir}/target/classes</additionalClasspathElement>
                     </additionalClasspathElements>
                     <parallel>none</parallel>
-                    <forkCount>0</forkCount>
                 </configuration>
                 <executions>
                     <execution>
